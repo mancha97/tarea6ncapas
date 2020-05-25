@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlms:th="http://www.thymeleaf.org">
+<head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Formulario</title>
+</head>
+<body>
+
+	<h1 class="display-4">Ingresar un contribuyente al registro</h1>
+	<form th:action="@{/formulario}"  method="post" th:object="${contribuyente}">
+		<div class="form group">
+		
+			<label>Nombre:</label>
+			<input class="form-control" type="text" name="s_nombre" th:field="${contribuyente.s_nombre}">
+			<span th:errors="*{s_nombre}" style="color:#ae3232;"></span><br>
+			
+			<label>Apellido:</label>
+			<input class="form-control" type="text" name="s_apellido" th:field="${contribuyente.s_apellido}">
+			<span th:errors="*{s_apellido}" style="color:#ae3232;"></span><br>
+			
+			<label>Nit:</label>
+			<input class="form-control" type="text" name="s_nit" th:field="${contribuyente.s_nit}">
+			<span th:errors="*{s_nit}" style="color:#ae3232;"></span><br>
+			
+			<label>Importancia:</label>
+			<select class="form-control form-control-lg" th:field="*{c_importancia.c_importancia}">
+	  			<option th:each="importancia : ${importancias}" 
+	  					th:value=${importancia.c_importancia} 
+	  					th:text="${importancia.s_importancia}">
+	  			</option>	
+			</select><br>
+		</div>
+		<input type="submit" class="btn btn-success" value="Agregar Contribuyente">
+	</form>
+	<br><button class="btn btn-info" onclick="window.location.href='/verContri'">Ver contribuyente</button>
+
+</body>
+</html>
